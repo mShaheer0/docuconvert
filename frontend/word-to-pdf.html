@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word to PDF Converter</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body>
+    <main class="app-shell">
+        <nav class="top-nav">
+            <div class="brand">Converter Studio</div>
+            <div class="nav-links">
+                <a class="nav-link" href="./index.html">Home</a>
+                <a class="nav-link" href="./pdf-to-word.html">PDF to Word</a>
+                <a class="nav-link active" href="./word-to-pdf.html">Word to PDF</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>Word to PDF</h1>
+            <p>Upload a DOCX file, convert it to PDF, and download the result. The API validates type and size, and all temporary files are cleaned up right after conversion.</p>
+
+            <div class="upload-card" id="upload-card">
+                <form id="word-to-pdf-form">
+                    <div class="drop-zone" id="drop-zone">
+                        <strong>Drag and drop a DOCX here</strong>
+                        <span>or click to choose a file</span>
+                    </div>
+                    <input id="file-input" type="file" accept=".docx" />
+
+                    <div class="preview" id="file-preview"></div>
+
+                    <div class="actions">
+                        <button class="btn-primary" id="convert-btn" type="submit">Convert to PDF</button>
+                        <button class="btn-secondary" id="reset-btn" type="button">Clear</button>
+                    </div>
+
+                    <div class="status-wrap">
+                        <div class="status" id="status"></div>
+                        <div class="progress-track" id="progress-track">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <p class="footer-note">Requires Word (docx2pdf) or LibreOffice installed on the server host.</p>
+        </section>
+    </main>
+
+    <script src="./assets/js/runtime-config.js"></script>
+    <script src="./assets/js/converter.js"></script>
+    <script>
+        initConverter({
+            formId: "word-to-pdf-form",
+            dropZoneId: "drop-zone",
+            fileInputId: "file-input",
+            previewId: "file-preview",
+            convertButtonId: "convert-btn",
+            resetButtonId: "reset-btn",
+            statusId: "status",
+            progressTrackId: "progress-track",
+            endpoint: "/api/word-to-pdf/convert",
+            accept: ".docx",
+            expectedMimeType: "application/pdf",
+        });
+    </script>
+</body>
+</html>

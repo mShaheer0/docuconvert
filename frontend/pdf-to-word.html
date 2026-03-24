@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF to Word Converter</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body>
+    <main class="app-shell">
+        <nav class="top-nav">
+            <div class="brand">Converter Studio</div>
+            <div class="nav-links">
+                <a class="nav-link" href="./index.html">Home</a>
+                <a class="nav-link active" href="./pdf-to-word.html">PDF to Word</a>
+                <a class="nav-link" href="./word-to-pdf.html">Word to PDF</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>PDF to Word</h1>
+            <p>Upload a PDF file, convert it to DOCX, and download the result instantly. Files are processed securely and temporary files are removed automatically.</p>
+
+            <div class="upload-card" id="upload-card">
+                <form id="pdf-to-word-form">
+                    <div class="drop-zone" id="drop-zone">
+                        <strong>Drag and drop a PDF here</strong>
+                        <span>or click to choose a file</span>
+                    </div>
+                    <input id="file-input" type="file" accept=".pdf" />
+
+                    <div class="preview" id="file-preview"></div>
+
+                    <div class="actions">
+                        <button class="btn-primary" id="convert-btn" type="submit">Convert to DOCX</button>
+                        <button class="btn-secondary" id="reset-btn" type="button">Clear</button>
+                    </div>
+
+                    <div class="status-wrap">
+                        <div class="status" id="status"></div>
+                        <div class="progress-track" id="progress-track">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <p class="footer-note">Limits: PDF only, max 10 MB, rate-limited for abuse protection.</p>
+        </section>
+    </main>
+
+    <script src="./assets/js/runtime-config.js"></script>
+    <script src="./assets/js/converter.js"></script>
+    <script>
+        initConverter({
+            formId: "pdf-to-word-form",
+            dropZoneId: "drop-zone",
+            fileInputId: "file-input",
+            previewId: "file-preview",
+            convertButtonId: "convert-btn",
+            resetButtonId: "reset-btn",
+            statusId: "status",
+            progressTrackId: "progress-track",
+            endpoint: "/api/pdf-to-word/convert",
+            accept: ".pdf",
+            expectedMimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        });
+    </script>
+</body>
+</html>
