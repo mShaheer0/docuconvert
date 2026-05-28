@@ -8,6 +8,7 @@ services:
     container_name: docuconvert
     ports:
       - "80:80"
+      - "443:443"
       - "8000:8000"
     environment:
       - FRONTEND_ORIGINS=*
@@ -16,6 +17,8 @@ services:
       - /tmp/uploads:/tmp/uploads
       - ./backend:/app/backend
       - ./frontend:/app/frontend
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/certbot:/var/www/certbot
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
