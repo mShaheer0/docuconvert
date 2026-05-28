@@ -32,13 +32,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "$DO_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H $DO_DROPLET_IP >> ~/.ssh/known_hosts
+          ssh-keyscan -t ed25519 $DO_DROPLET_IP >> ~/.ssh/known_hosts 2>/dev/null || true
           
           # Copy image to Droplet
-          scp -i ~/.ssh/deploy_key docuconvert.tar.gz $DO_SSH_USER@$DO_DROPLET_IP:/tmp/
+          scp -o StrictHostKeyChecking=accept-new -i ~/.ssh/deploy_key docuconvert.tar.gz $DO_SSH_USER@$DO_DROPLET_IP:/tmp/
           
           # Deploy on Droplet
-          ssh -i ~/.ssh/deploy_key $DO_SSH_USER@$DO_DROPLET_IP << 'EOF'
+          ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/deploy_key $DO_SSH_USER@$DO_DROPLET_IP << 'EOF'
           cd /app
           
           # Load new image
