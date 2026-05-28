@@ -1,0 +1,73 @@
+name: Deploy to Digital Ocean
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t docuconvert:${{ github.sha }} .
+          docker tag docuconvert:${{ github.sha }} docuconvert:latest
+
+      - name: Save Docker image
+        run: |
+          docker save docuconvert:latest | gzip > docuconvert.tar.gz
+
+      - name: Deploy to Digital Ocean Droplet
+        env:
+          DO_SSH_KEY: ${{ secrets.DO_SSH_KEY }}
+          DO_DROPLET_IP: ${{ secrets.DO_DROPLET_IP }}
+          DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DO_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $DO_DROPLET_IP >> ~/.ssh/known_hosts
+          
+          # Copy image to Droplet
+          scp -i ~/.ssh/deploy_key docuconvert.tar.gz $DO_SSH_USER@$DO_DROPLET_IP:/tmp/
+          
+          # Deploy on Droplet
+          ssh -i ~/.ssh/deploy_key $DO_SSH_USER@$DO_DROPLET_IP << 'EOF'
+          cd /app
+          
+          # Load new image
+          docker load < /tmp/docuconvert.tar.gz
+          
+          # Pull latest code
+          git pull origin main
+          
+          # Stop and remove old container
+          docker-compose down || true
+          
+          # Start new container with new image
+          docker-compose up -d
+          
+          # Wait for health check
+          sleep 10
+          curl -f http://localhost:8000/health || exit 1
+          
+          # Cleanup
+          rm /tmp/docuconvert.tar.gz
+          docker image prune -f
+          EOF
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "✅ Deployment successful!"
+          else
+            echo "❌ Deployment failed!"
+            exit 1
+          fi

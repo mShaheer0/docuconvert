@@ -1,0 +1,51 @@
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CI/CD
+.github/workflows
+.gitlab-ci.yml
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov/
+
+# Documentation
+docs/
+*.md
+LICENSE
+
+# Node (if any frontend build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Project specific
+.env.local
+.env.*.local
+*.log

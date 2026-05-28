@@ -96,7 +96,53 @@ If neither is installed, the API returns a safe error message explaining what is
 - Temporary file usage is scoped and cleaned automatically.
 - Validation and rate limiting reduce abuse risk.
 
-## Deploy: GitHub Pages (Frontend) + Azure Web App (Backend)
+## Deployment
+
+### Quick Deploy to Digital Ocean ($12/month)
+
+**Single Droplet + Docker + Auto-Deployment**
+
+See [DEPLOY.md](DEPLOY.md) for complete guide.
+
+#### Quick Start:
+
+1. Create **2GB Droplet** on Digital Ocean ($12/month)
+2. SSH into droplet and run:
+   ```bash
+   curl -O https://raw.githubusercontent.com/mShaheer0/docuconvert/main/setup.sh
+   bash setup.sh
+   ```
+3. Add GitHub Secrets:
+   - `DO_SSH_KEY`: SSH private key from droplet
+   - `DO_DROPLET_IP`: Droplet IP address
+   - `DO_SSH_USER`: `root`
+4. Push to main → GitHub Actions auto-deploys! 🚀
+
+#### Cost Breakdown:
+- Droplet (2GB): $12/month
+- Backups: $2.40/month
+- Data transfer: ~$1/month
+- **Total: ~$15/month** = 13+ months of credits
+
+#### Features:
+- ✅ Zero-downtime deployments
+- ✅ Auto-restart on crash
+- ✅ Health checks every 30s
+- ✅ Handles 5K-10K requests/day
+- ✅ Gzip compression enabled
+- ✅ 10MB file upload support
+
+### Docker Local Testing
+
+```bash
+docker-compose up -d
+docker-compose logs -f
+# Visit http://localhost:80
+```
+
+### Manual Deployment
+
+See [DEPLOY.md](DEPLOY.md) for step-by-step setup guide.
 
 This repository now includes CI/CD workflows:
 
