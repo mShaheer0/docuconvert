@@ -20,6 +20,7 @@ WORKDIR /app
 # Install runtime dependencies only (smaller image)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     nginx \
+    libreoffice \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Python packages from builder
