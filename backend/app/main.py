@@ -99,6 +99,18 @@ async def word_to_pdf_page_alias() -> FileResponse:
     return FileResponse(FRONTEND_DIR / "word-to-pdf.html")
 
 
+@app.get("/robots.txt", include_in_schema=False)
+async def robots() -> FileResponse:
+    """Serve robots.txt for search engine crawling."""
+    return FileResponse(FRONTEND_DIR / "robots.txt", media_type="text/plain")
+
+
+@app.get("/sitemap.xml", include_in_schema=False)
+async def sitemap() -> FileResponse:
+    """Serve sitemap.xml for search engine indexing."""
+    return FileResponse(FRONTEND_DIR / "sitemap.xml", media_type="application/xml")
+
+
 @app.get("/health", tags=["health"])
 async def health_check() -> dict[str, str]:
     """Simple health endpoint for monitoring and orchestration."""

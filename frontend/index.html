@@ -3,7 +3,32 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DocuConvert</title>
+    <meta name="description" content="FileGoblin - Fast, secure file converter. Convert PDF to Word (DOCX) and Word to PDF instantly. No sign-up required." />
+    <meta name="keywords" content="PDF converter, Word to PDF, PDF to Word, DOCX converter, file converter, free converter" />
+    <meta name="author" content="FileGoblin" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#060a12" />
+    
+    <!-- Open Graph for social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://filegoblin.dev/" />
+    <meta property="og:title" content="FileGoblin - Free File Converter" />
+    <meta property="og:description" content="Convert PDF to Word and Word to PDF instantly. Secure, fast, and easy." />
+    <meta property="og:image" content="https://filegoblin.dev/assets/images/logo.png" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FileGoblin - Free File Converter" />
+    <meta name="twitter:description" content="Convert PDF to Word and Word to PDF instantly." />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://filegoblin.dev/" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png" />
+    <link rel="apple-touch-icon" href="/assets/images/logo.png" />
+    
+    <title>FileGoblin - Free PDF to Word & Word to PDF Converter</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap");
 
@@ -64,6 +89,15 @@
             letter-spacing: 0.04em;
             text-decoration: none;
             color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            display: block;
         }
 
         .logo span {
@@ -457,9 +491,9 @@
 <body>
     <div class="shell">
         <nav class="navbar">
-            <a class="logo" href="./index.html">Docu<span>Convert</span></a>
+            <a class="logo" href="/">File<span>Goblin</span></a>
             <div class="nav-links">
-                <a href="./index.html">Home</a>
+                <a href="/">Home</a>
                 <a href="#tools">Tools</a>
                 <a href="#about">About</a>
             </div>
@@ -473,7 +507,7 @@
         <section class="section" id="tools">
             <h2>Tools</h2>
             <div class="tools-grid">
-                <a class="tool-card" href="./pdf-to-word.html" aria-label="Open PDF to Word converter">
+                <a class="tool-card" href="/pdf-to-word" aria-label="Open PDF to Word converter">
                     <div class="card-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 3H14L19 8V20C19 20.55 18.55 21 18 21H7C6.45 21 6 20.55 6 20V4C6 3.45 6.45 3 7 3Z" stroke="#5BD1FF" stroke-width="1.6"/>
@@ -485,7 +519,7 @@
                     <p>Convert PDFs into editable Word documents</p>
                 </a>
 
-                <a class="tool-card" href="./word-to-pdf.html" aria-label="Open Word to PDF converter">
+                <a class="tool-card" href="/word-to-pdf" aria-label="Open Word to PDF converter">
                     <div class="card-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="5" y="3" width="14" height="18" rx="2" stroke="#69F0C2" stroke-width="1.6"/>
@@ -565,7 +599,7 @@
         </section>
 
         <footer class="footer">
-            <p>&copy; 2026 DocuConvert. All rights reserved.</p>
+            <p>&copy; 2026 FileGoblin. All rights reserved.</p>
         </footer>
     </div>
 

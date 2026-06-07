@@ -16,7 +16,7 @@
    - **Region**: Choose closest to users (e.g., New York, San Francisco)
    - **VPC Network**: Default
    - **Authentication**: Add SSH key (or password)
-   - **Hostname**: `docuconvert`
+   - **Hostname**: `filegoblin`
    - **Enable backups**: YES ($2.40/month for safety)
 
 3. **Note the IP address** (you'll need it)
@@ -50,7 +50,7 @@ usermod -aG docker root
 
 ```bash
 cd /
-git clone https://github.com/mShaheer0/docuconvert.git app
+git clone https://github.com/mShaheer0/filegoblin.git app
 cd /app
 ```
 

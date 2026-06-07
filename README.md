@@ -109,7 +109,7 @@ See [DEPLOY.md](DEPLOY.md) for complete guide.
 1. Create **2GB Droplet** on Digital Ocean ($12/month)
 2. SSH into droplet and run:
    ```bash
-   curl -O https://raw.githubusercontent.com/mShaheer0/docuconvert/main/setup.sh
+   curl -O https://raw.githubusercontent.com/mShaheer0/filegoblin/main/setup.sh
    bash setup.sh
    ```
 3. Add GitHub Secrets:
@@ -177,7 +177,7 @@ This repository now includes CI/CD workflows:
 1. In [frontend/assets/js/runtime-config.js](frontend/assets/js/runtime-config.js), set:
 
   ```javascript
-  window.DOCUCONVERT_API_BASE_URL = "https://<your-azure-app>.azurewebsites.net";
+  window.FILEGOBLIN_API_BASE_URL = "https://<your-azure-app>.azurewebsites.net";
   ```
 
 2. In GitHub repo Settings > Pages:

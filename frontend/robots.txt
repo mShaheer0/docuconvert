@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /private
+
+# Sitemap location
+Sitemap: https://filegoblin.dev/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1
